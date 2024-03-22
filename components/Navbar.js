@@ -5,6 +5,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Cross, CrossIcon, MenuIcon, ShoppingCartIcon, X } from "lucide-react"
 import { useEffect, useState } from "react";
 
+import { motion } from "framer-motion"
+
+// const variants = {
+//   open: { opacity: 1, x: 0 },
+//   closed: { opacity: 0, x: "-100%" },
+// }
 
 
 
@@ -61,6 +67,7 @@ const Navbar = () => {
 
     const [sticky, setSticky] = useState(false);
     const [toggle, setToggle] = useState(true);
+    const [isOpen, setIsOpen] = useState(false)
 
 
 
@@ -117,13 +124,14 @@ const Navbar = () => {
 
 
 
-<div className="relavive bg-black/5 lg:hidden">
-{toggle? <MenuIcon onClick={prev => setToggle(!prev)  }/> : <X  onClick={prev => setToggle(prev)}/> }
+<div  
+     className="relavive bg-black/5 lg:hidden">
+{toggle? <MenuIcon className="duration-300 transition-all" onClick={() => setToggle(prev => !prev)  }/> : <X  onClick={() => setToggle(prev => !prev)}/> }
 
-{!toggle && <ul className="w-full bg-black/5 absolute left-10 top-20 block my-5 duration-100 transition-all">
+{!toggle && <ul className="w-full bg-black/5 absolute left-10 top-20 block my-5 ">
                 {navlinks.map((link, i) => (
 
-<Link key={i} href={link.href}>
+<Link key={i} href={link.href} className="duration-300 transition-all">
     <li className="my-5">{link.name}</li>
 </Link>
 
